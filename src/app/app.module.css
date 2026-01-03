@@ -1,3 +1,9 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .header {
   display: flex;
   width: 100%;
@@ -11,7 +17,6 @@
 
 .currTurnText {
   display: flex;
-  width: 100%;
   justify-content: center;
   padding: 1.5rem 0;
   font-size: 1.2rem;
@@ -24,4 +29,32 @@
   grid-template-rows: repeat(3, 8vw);
   gap: 0.3rem;
   justify-content: center;
+}
+
+.replayButton {
+  margin-top: 1rem;
+  font-size: 1rem;
+  background-color: turquoise;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  width: fit-content;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.replayButton:hover {
+  background-color: darkturquoise;
+}
+
+.replayButton:active {
+  background-color: deepskyblue;
+}
+
+.winnerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2rem;
+  margin-top: 1rem;
+  font-weight: bold;
 }
