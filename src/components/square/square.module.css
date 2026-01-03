@@ -1,0 +1,19 @@
+.square {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border: 2px solid black;
+  cursor: pointer;
+}
+
+.xImage {
+  width: 90%;
+  height: 90%;
+}
+
+.oImage {
+  width: 100%;
+  height: 100%;
+}

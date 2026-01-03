@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  background-color: lightgray;
+  border-bottom: 1px solid gray;
+  padding: 1rem 0;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.currTurnText {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding: 1.5rem 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 8vw);
+  grid-template-rows: repeat(3, 8vw);
+  gap: 0.3rem;
+  justify-content: center;
+}
