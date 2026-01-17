@@ -11,18 +11,37 @@ export const App: React.FC = () => {
 
   const [currTurn, setCurrTurn] = useState<"X" | "O">("X");
 
-  const winner = useMemo(() => getWinner(board), [board]);
+  const gameStatus = useMemo(() => getWinner(board), [board]);
 
   return (
     <div className={styles.app}>
       <div className={styles.header}>Tic Tac Toe</div>
-      <div className={styles.currTurnText}>{`Current Turn: ${currTurn}`}</div>
+      <div
+        className={styles.currTurnText}
+        style={
+          gameStatus
+            ? {
+                color: gameStatus.value === "tie" ? "orange" : "green",
+              }
+            : undefined
+        }
+      >
+        {!gameStatus
+          ? `Next Turn: ${currTurn}`
+          : gameStatus.value === "tie"
+          ? "Draw!"
+          : `Winner: ${gameStatus.value}`}
+      </div>
       <div className={styles.board}>
         {board.map((squareValue, index) => (
           <Square
             key={index}
             value={squareValue}
-            clickable={winner === null && !squareValue}
+            clickable={gameStatus === null && !squareValue}
+            highlight={
+              gameStatus?.value !== "tie" &&
+              gameStatus?.combination.includes(index)
+            }
             onClick={() => {
               const isLegalClick = !board[index];
 
@@ -40,23 +59,15 @@ export const App: React.FC = () => {
           />
         ))}
       </div>
-      {winner && (
-        <div
-          className={styles.winnerContainer}
-          style={{
-            color: winner === "tie" ? "orange" : "green",
-          }}
+      {gameStatus && (
+        <button
+          onClick={() =>
+            setBoard(Array(9).fill(null) as FixedSizeArray<SquareValue, 9>)
+          }
+          className={styles.replayButton}
         >
-          {winner === "tie" ? "It's a tie!" : `The Winner is: ${winner}`}
-          <button
-            onClick={() =>
-              setBoard(Array(9).fill(null) as FixedSizeArray<SquareValue, 9>)
-            }
-            className={styles.replayButton}
-          >
-            Play Again
-          </button>
-        </div>
+          Play Again
+        </button>
       )}
     </div>
   );
