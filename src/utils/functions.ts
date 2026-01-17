@@ -2,7 +2,13 @@ import type { FixedSizeArray, SquareValue } from "../types";
 
 export const getWinner = (
   board: FixedSizeArray<SquareValue, 9>
-): SquareValue | null | "tie" => {
+):
+  | null
+  | {
+      value: NonNullable<SquareValue>;
+      combination: readonly [number, number, number];
+    }
+  | { value: "tie" } => {
   const winningCombinations = [
     // horizontals
     [0, 1, 2],
@@ -19,11 +25,11 @@ export const getWinner = (
   for (const combination of winningCombinations) {
     const [a, b, c] = combination;
     if (!!board[a] && board[a] === board[b] && board[b] === board[c]) {
-      return board[a];
+      return { value: board[a], combination };
     }
   }
   if (board.every((square) => !!square)) {
-    return "tie";
+    return { value: "tie" };
   }
   return null;
 };
