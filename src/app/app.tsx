@@ -61,9 +61,10 @@ export const App: React.FC = () => {
       </div>
       {gameStatus && (
         <button
-          onClick={() =>
-            setBoard(Array(9).fill(null) as FixedSizeArray<SquareValue, 9>)
-          }
+          onClick={() => {
+            setBoard(Array(9).fill(null) as FixedSizeArray<SquareValue, 9>);
+            setCurrTurn("X");
+          }}
           className={styles.replayButton}
         >
           Play Again
